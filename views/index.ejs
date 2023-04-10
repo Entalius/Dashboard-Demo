@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <title>Dashboard</title>
+</head>
+<body>
+    <div class="container">
+        <h1>MSISDN Status</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Total Amount</th>
+                    <th>Status</th>
+                    <th>Category</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% msisdnStatus.forEach(row => { %>
+                    <tr>
+                        <td><%= row['Total Amount'] %></td>
+                        <td><%= row.Status %></td>
+                        <td><%= row.Category %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+
+        <h1>SIM Card Status</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Total Amount</th>
+                    <th>Status</th>
+                    <th>Category</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% simCardStatus.forEach(row => { %>
+                    <tr>
+                        <td><%= row['Total Amount'] %></td>
+                        <td><%= row.Status %></td>
+                        <td><%= row.Category %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+
+        <h1>Scheduler Status</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name of the Task</th>
+                    <th>What is Done</th>
+                    <th>Scheduler Started</th>
+                    <th>Scheduler Completed</th>
+                    <th>Time in MS</th>
+                    <th>Scheduler ran for</th>
+                    <th>Message</th>
+                    <th>Error</th>
+                    <th>Run Every</th>
+                    <th>Runs</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% schedulerStatus.forEach(row => { %>
+                    <tr>
+                        <td><%= row['Name of the Task'] %></td>
+                        <td><%= row['What is Done'] %></td>
+                        <td><%= row['Scheduler Started'] %></td>
+                        <td><%= row['Scheduler Completed'] %></td>
+                        <td><%= row['Time in MS'] %></td>
+                        <td><%= row['Scheduler ran for'] %></td>
+                        <td><%= row.Message %></td>
+                        <td><%= row.Error %></td>
+                        <td><%= row['Run Every'] %></td>
+                        <td><%= row.Runs %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,73 @@
+/* Reset some default styles */
+body, h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #222831;
+    color: #eeeeee;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 10px;
+    color: #00adb5;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #393e46;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #393e46;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #2e2e2e;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #1e1e1e;
+}
+
+.table {
+    margin-bottom: 20px;
+}
+
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    color: #eeeeee;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: #00adb5;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.btn:hover {
+    color: #222831;
+    background-color: #80cbc4;
+}
