@@ -1,0 +1,68 @@
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+}
+.navbar {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  background-color: #3c3f58;
+  padding-top: 70px;
+  overflow-y: auto;
+}
+.sidebar-brand {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+}
+.sidebar-nav-link {
+  display: block;
+  color: #b1b1b1;
+  padding: 10px 15px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+.sidebar-nav-link:hover {
+  color: #fff;
+  background-color: #44486c;
+  text-decoration: none;
+}
+.main {
+  margin-top: 70px;
+  padding: 30px;
+}
+.card {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.card-header {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.card-footer {
+  font-size: 0.8rem;
+  font-style: italic;
+  color: #888;
+}
+.table thead th {
+  border-top: none;
+  border-bottom: none;
+  background-color: #f9f9f9;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.table td {
+  border-top: none;
+  font-weight: bold;
+}
