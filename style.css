@@ -1,23 +1,13 @@
 /* Global styles */
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: #222;
-    color: #fff;
+    background-color: #2c3e50;
+    color: #ffffff;
 }
 
-a {
-    color: #fff;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-/* Navbar styles */
 .navbar {
-    background-color: #333;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    background-color: #233140;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-brand {
@@ -25,13 +15,7 @@ a:hover {
     font-size: 1.5rem;
     font-weight: bold;
     text-transform: uppercase;
-    color: #fff;
-}
-
-.navbar-toggler-icon {
-    background-image: url('https://i.ibb.co/4Jq3VLK/menu.png');
-    width: 24px;
-    height: 24px;
+    color: #ffffff;
 }
 
 .nav-link {
@@ -39,11 +23,11 @@ a:hover {
     font-size: 1rem;
     font-weight: bold;
     text-transform: uppercase;
-    color: #fff;
+    color: #ffffff;
 }
 
 .nav-link:hover {
-    color: #ccc;
+    color: #c8c8c8;
 }
 
 /* Sidebar styles */
@@ -52,18 +36,10 @@ a:hover {
     top: 0;
     left: 0;
     height: 100vh;
-    background-color: #111;
+    background-color: #1f2a33;
     padding-top: 70px;
     overflow-y: auto;
-}
-
-.sidebar-brand {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.5rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: #fff;
-    margin-bottom: 30px;
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar-nav-link {
@@ -72,14 +48,15 @@ a:hover {
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: #ccc;
+    color: #c8c8c8;
     padding: 10px 15px;
     border-radius: 5px;
     transition: all 0.3s ease;
 }
 
 .sidebar-nav-link:hover {
-    background-color: #333;
+    background-color: #34495e;
+    transform: scale(1.05);
 }
 
 /* Main content styles */
@@ -89,46 +66,94 @@ a:hover {
 }
 
 .card {
-    background-color: #333;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    background-color: #34495e;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     margin-bottom: 30px;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
 }
 
 .card-header {
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     text-transform: uppercase;
-    color: #fff;
-    background-color: #222;
+    color: #ffffff;
+    background-color: #2c3e50;
     padding: 10px;
-    border-bottom: 1px solid #444;
+    border-bottom: 1px solid #233140;
 }
 
 .card-footer {
     font-size: 0.8rem;
     font-style: italic;
-    color: #ccc;
+    color: #c8c8c8;
     padding: 10px;
-    border-top: 1px solid #444;
+    border-top: 1px solid #233140;
 }
 
-.table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 0;
+/* Canvas styles */
+canvas {
+    background-color: #34495e;
 }
 
-.table thead th {
+.accordion .card {
+    background-color: #233140;
+    border: none;
+}
+
+.accordion .card .btn {
     font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
     font-weight: bold;
     text-transform: uppercase;
-    color: #fff;
-    background-color: #222;
-    padding: 10px;
-    border-bottom: 1px solid #444;
+    color: #c8c8c8;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-align: left;
+    width: 100%;
+    background-color: #34495e;
 }
 
-.table td {
-    padding: 10px;
-    color: #ccc;
+.accordion .card .btn:hover {
+    background-color: #2c3e50;
+}
+
+.accordion .card .collapse.show .btn {
+    background-color: #233140;
+}
+
+.accordion .card .collapse {
+    border-top: 1px solid #2c3e50;
+}
+
+.col-md-6 {
+    background-color: #34495e;
+    padding: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.col-md-6:hover {
+    transform: translateY(-5px);
+}
+
+.card-body {
+    background-color: #34495e;
+}
+
+.col-lg-10.main {
+    background-color: #34495e;
+}
+
+.row {
+    background-color: #34495e;
+}
+
+.card.mb-4 {
+    background-color: #34495e;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 }
