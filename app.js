@@ -1,3 +1,32 @@
+$(function () {
+  function slideMenu() {
+    var activeState = $(".sidebar").hasClass("active");
+    $(".sidebar").toggleClass("active");
+  }
+
+  $("#menu-wrapper").click(function (event) {
+    event.stopPropagation();
+    $("#hamburger-menu").toggleClass("open");
+    slideMenu();
+  });
+
+  $(document).on("click", function () {
+    if ($(".sidebar").hasClass("active")) {
+      $("#hamburger-menu").removeClass("open");
+      slideMenu();
+    }
+  });
+
+  $(".sidebar-nav-link").click(function (event) {
+    event.stopPropagation();
+  });
+
+  $('.sidebar-nav-link').on('click', function () {
+    $('.sidebar-nav-link').removeClass('active');
+    $(this).addClass('active');
+  });
+});
+
 var ctx1 = document.getElementById('chart1').getContext('2d');
 var chart1 = new Chart(ctx1, {
   type: 'bar',
@@ -46,6 +75,7 @@ var chart1 = new Chart(ctx1, {
     }
   }
 });
+
 
 var ctx2 = document.getElementById('chart2').getContext('2d');
 var chart2 = new Chart(ctx2, {
@@ -179,3 +209,32 @@ var chart3 = new Chart(ctx3, {
     }
     }
     });
+
+    $(function () {
+        function slideMenu() {
+          var activeState = $(".sidebar").hasClass("active");
+          $(".sidebar").toggleClass("active");
+        }
+      
+        $("#menu-wrapper").click(function (event) {
+          event.stopPropagation();
+          $("#hamburger-menu").toggleClass("open");
+          slideMenu();
+        });
+      
+        $(document).on("click", function () {
+          if ($(".sidebar").hasClass("active")) {
+            $("#hamburger-menu").removeClass("open");
+            slideMenu();
+          }
+        });
+      
+        $(".sidebar-nav-link").click(function (event) {
+          event.stopPropagation();
+        });
+      
+        $('.sidebar-nav-link').on('click', function () {
+          $('.sidebar-nav-link').removeClass('active');
+          $(this).addClass('active');
+        });
+      });
