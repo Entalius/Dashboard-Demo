@@ -1,10 +1,9 @@
 body {
     font-family: "Roboto", sans-serif;
-    background-color: #212529;
-    color: #f8f9fa;
+    background-color: #f0f2f5;
+    color: #212529;
   }
   
-  /* Header */
   header {
     background-color: #343a40;
   }
@@ -13,12 +12,10 @@ body {
     padding: 1rem 0;
   }
   
-  /* Sidebar */
   .sidebar {
     padding: 1rem 0;
     min-height: 100vh;
     background-color: #212529;
-    transition: all 0.3s ease-in-out; /* Add smooth transition effect */
   }
   
   .sidebar-nav-link {
@@ -26,7 +23,6 @@ body {
     padding: 0.5rem 1rem;
     color: #f8f9fa;
     text-decoration: none;
-    transition: all 0.3s ease-in-out; /* Add smooth transition effect */
   }
   
   .sidebar-nav-link:hover,
@@ -35,7 +31,6 @@ body {
     color: #f8f9fa;
     text-decoration: none;
   }
-  
   
   .accordion .btn-link {
     text-decoration: none;
@@ -59,21 +54,14 @@ body {
     background-color: #343a40;
   }
   
-  /* Main */
   .main {
     padding: 2rem;
   }
   
-  /* Chart container */
-  .chart-container {
-    position: relative;
-    height: 250px;
-  }
-  
-  /* Animate cards */
   .card {
-    background-color: #343a40;
+    background-color: #ffffff;
     border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     animation-duration: 1s;
     animation-fill-mode: both;
     animation-name: fadeInUp;
@@ -81,8 +69,8 @@ body {
   
   .card-footer {
     font-size: 0.9rem;
-    background-color: #495057;
-    color: #f8f9fa;
+    background-color: #f8f9fa;
+    color: #212529;
   }
   
   @keyframes fadeInUp {
@@ -100,14 +88,12 @@ body {
     font-weight: 600;
   }
   
-  /* Card hover effect */
   .card:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transform: translateY(-4px); /* Add translateY animation */
-    transition: all 0.3s ease-in-out; /* Add smooth transition effect */
+    transform: translateY(-4px);
+    transition: transform 0.2s ease-in-out;
   }
   
-  /* Hamburger menu */
   #menu-wrapper {
     display: flex;
     justify-content: flex-end;
@@ -136,7 +122,6 @@ body {
     }
   }
   
-  /* Navbar */
   .navbar {
     background-color: #343a40;
   }
@@ -149,30 +134,28 @@ body {
     filter: brightness(0) invert(1);
   }
   
-  /* Updated col-lg-10 main */
-.col-lg-10.main {
-    background-color: #212529;
+  .col-lg-10.main {
+    background-color: #f0f2f5;
     padding: 2rem;
-    color: #f8f9fa;
-}
-
-/* Updated card body */
-.card-body {
-    background-color: #343a40;
-    color: #f8f9fa;
+    color: #212529;
+  }
+  
+  .card-body {
+    background-color: #ffffff;
+    color: #212529;
     padding: 1.25rem;
-}
-
-/* Updated card mb-4 */
-.card.mb-4 {
-    background-color: #343a40;
+  }
+  
+  .card.mb-4 {
+    background-color: #ffffff;
     border: none;
     margin-bottom: 1.5rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.card.mb-4:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transform: translateY(-4px); /* Add translateY animation */
-    transition: all 0.3s ease-in-out; /* Add smooth transition effect */
   }
+  
+  .card.mb-4:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-4px);
+    transition: transform 0.2s ease-in-out;
+  }
+  
