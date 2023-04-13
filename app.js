@@ -2,6 +2,13 @@ window.addEventListener('DOMContentLoaded', function() {
     const msisdnOverviewLink = document.getElementById('msisdn-overview-link');
     const mainContainer = document.querySelector('.main');
     const chartContainer = document.getElementById('chart-container');
+    const itBillingLink = document.getElementById('it-billing-link');
+itBillingLink.addEventListener('click', function (event) {
+  event.preventDefault();
+  location.reload();
+});
+
+    
   
     msisdnOverviewLink.addEventListener('click', async function (event) {
         event.preventDefault();
@@ -79,7 +86,7 @@ window.addEventListener('DOMContentLoaded', function() {
             const chartData = processData(filteredData);
             msisdnChart.data = chartData;
             msisdnChart.update();
-          });
+        });
       });
       const resetFiltersButton = document.getElementById('reset-filters');
 resetFiltersButton.addEventListener('click', function () {
@@ -120,7 +127,7 @@ function populateFilterOptions(statuses, categories) {
   }
   
 
-  function processData(data) {
+function processData(data) {
     const categoryMap = {};
 
     data.forEach((item) => {
@@ -158,27 +165,24 @@ function populateFilterOptions(statuses, categories) {
             }
         ]
     };
-
+    const resetFiltersButton = document.getElementById('reset-filters');
+    resetFiltersButton.addEventListener('click', function () {
+      const statusSelect = document.getElementById('status-select');
+      const categorySelect = document.getElementById('category-select');
+    
+      for (const option of statusSelect.options) {
+        option.selected = false;
+      }
+      for (const option of categorySelect.options) {
+        option.selected = false;
+      }
+    });
+    
     return chartData;
 }
 
 
-const filterForm = document.getElementById('filter-form');
-filterForm.addEventListener('submit', async function (event) {
-  event.preventDefault();
 
-  const statusFilter = document.getElementById('status-select').value;
-  const categoryFilter = document.getElementById('category-select').value;
-  const filteredData = data.filter(item => {
-    const statusMatch = !statusFilter || item.Status === statusFilter;
-    const categoryMatch = !categoryFilter || item.Category === categoryFilter;
-    return statusMatch && categoryMatch;
-  });
-
-  const chartData = processData(filteredData);
-  msisdnChart.data = chartData;
-  msisdnChart.update();
-});
 
 
 async function fetchData() {
