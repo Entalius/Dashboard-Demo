@@ -3,40 +3,122 @@ window.addEventListener('DOMContentLoaded', function() {
     const mainContainer = document.querySelector('.main');
     const chartContainer = document.getElementById('chart-container');
   
-    msisdnOverviewLink.addEventListener('click', async function(event) {
+    msisdnOverviewLink.addEventListener('click', async function (event) {
         event.preventDefault();
-  
+      
         if (chartContainer.style.display === 'none') {
-            chartContainer.style.display = 'block';
+          chartContainer.style.display = 'block';
         } else {
-            chartContainer.style.display = 'none';
+          chartContainer.style.display = 'none';
         }
-  
+      
         mainContainer.innerHTML = `
-        <div class="card">
-            <div class="card-body">
-                <canvas id="msisdnChart"></canvas>
-            </div>
-        </div>`;
-  
+        <div class="card mb-4">
+        <div class="card-header">MSISDN overview</div>
+        <div class="card-body">
+          <div class="filter-container">
+            <form id="filter-form">
+              <div class="form-group">
+                <label for="status-select">Status:</label>
+                <select class="form-control" id="status-select" multiple>
+                  <option value="" disabled>Select status</option>
+                  <!-- Add the unique status options here -->
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="category-select">Category:</label>
+                <select class="form-control" id="category-select" multiple>
+                  <option value="" disabled>Select category</option>
+                  <!-- Add the unique category options here -->
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary">Filter</button>
+              <button class="btn btn-secondary" id="reset-filters">Reset Filters</button>
+            </form>
+          </div>
+          <div class="chart-wrapper">
+            <canvas id="msisdnChart"></canvas>
+          </div>
+        </div>
+      </div>
+        `;
+      
         const response = await fetch('/number_data');
         const data = await response.json();
+        const uniqueStatuses = [...new Set(data.map((item) => item.Status))];
+        const uniqueCategories = [...new Set(data.map((item) => item.Category))];
+        populateFilterOptions(uniqueStatuses, uniqueCategories);
         const chartData = processData(data);
-  
+      
         const ctx = document.getElementById('msisdnChart').getContext('2d');
         const msisdnChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: chartData,
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                legend: {
-                    position: 'bottom'
-                }
-            }
+          type: 'doughnut',
+          data: chartData,
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            legend: {
+              position: 'bottom',
+            },
+          },
         });
-    });
+      
+        const filterForm = document.getElementById('filter-form');
+        filterForm.addEventListener('submit', async function (event) {
+            event.preventDefault();
+          
+            const statusFilters = Array.from(document.getElementById('status-select').selectedOptions).map(option => option.value);
+            const categoryFilters = Array.from(document.getElementById('category-select').selectedOptions).map(option => option.value);
+          
+            const filteredData = data.filter(item => {
+              const statusMatch = !statusFilters.length || statusFilters.includes(item.Status);
+              const categoryMatch = !categoryFilters.length || categoryFilters.includes(item.Category);
+              return statusMatch && categoryMatch;
+            });
+          
+            const chartData = processData(filteredData);
+            msisdnChart.data = chartData;
+            msisdnChart.update();
+          });
+      });
+      const resetFiltersButton = document.getElementById('reset-filters');
+resetFiltersButton.addEventListener('click', function () {
+  const statusSelect = document.getElementById('status-select');
+  const categorySelect = document.getElementById('category-select');
+
+  for (const option of statusSelect.options) {
+    option.selected = false;
+  }
+  for (const option of categorySelect.options) {
+    option.selected = false;
+  }
+
+  const chartData = processData(data);
+  msisdnChart.data = chartData;
+  msisdnChart.update();
 });
+
+});
+
+function populateFilterOptions(statuses, categories) {
+    const statusSelect = document.getElementById('status-select');
+    const categorySelect = document.getElementById('category-select');
+  
+    statuses.forEach(status => {
+      const option = document.createElement('option');
+      option.value = status;
+      option.text = status;
+      statusSelect.add(option);
+    });
+  
+    categories.forEach(category => {
+      const option = document.createElement('option');
+      option.value = category;
+      option.text = category;
+      categorySelect.add(option);
+    });
+  }
+  
 
 function processData(data) {
     const categoryMap = {};
