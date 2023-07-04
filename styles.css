@@ -3,81 +3,92 @@ body {
     font-family: 'Roboto', sans-serif;
     background-color: #212529;
     color: #f8f9fa;
-  }
-  
-  .navbar {
-    background-color: #212529 !important;
 }
 
-  
-  
-  
-  .navbar h1 {
-    margin: 0 auto;
-    color: #ffc107;  /* Change the color here */
-  }
-  
-  .navbar .navbar-brand {
-    color: #ffc107;
-  }
-  
-  
-  .card {
-    margin-bottom: 20px;
-    transition: transform .2s; /* Animation */
-    background-color: #343a40;
+.navbar {
+    background-color: #212529 !important;
     border: none;
-  }
-  
-  .card .card-body {
+    box-shadow: 5px 5px 10px #0d0d0d, -5px -5px 10px #353535;
+    border-radius: 10px;
+}
+
+.navbar h1 {
+    margin: 0 auto;
     color: #f8f9fa;
-  }
-  
-  .card:hover {
-    transform: scale(1.02); /* (150% zoom - Note: if the zoom is too large, it will cause the page to scroll) */
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-  }
-  
-  .card:hover .card-body {
+}
+
+.navbar .navbar-brand {
+    color: #f8f9fa;
+}
+
+.card {
+    margin-bottom: 20px;
+    transition: transform .2s;
+    background-color: #212529;
+    border: none;
+    box-shadow: 5px 5px 10px #0d0d0d, -5px -5px 10px #353535;
+    border-radius: 10px;
+}
+
+.card .card-body {
+    color: #f8f9fa;
+    position: relative;
+}
+
+.card .card-body::before {
+    content: "";
+    position: absolute;
+    top: -16px;
+    right: -16px;
+    bottom: -16px;
+    left: -16px;
+    background: inherit;
+    border-radius: inherit;
+    box-shadow: inset 2px 2px 5px #0d0d0d, inset -2px -2px 5px #353535;
+}
+
+.card:hover {
+    transform: scale(1.02);
+    box-shadow: 10px 10px 20px #0d0d0d, -10px -10px 20px #353535;
+}
+
+.card:hover .card-body {
     color: #ffc107;
-  }
-  
-  /* The side navigation menu */
-  .sidenav {
-    height: 100%; /* 100% Full-height */
-    width: 0; /* 0 width - change this with JavaScript */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Stay on top */
-    top: 0; /* Stay at the top */
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
     left: 0;
-    background-color: #343a40; /* Black */
-    overflow-x: hidden; /* Disable horizontal scroll */
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
-    padding-top: 60px; /* Place content 60px from the top */
-  }
-  
-  /* The navigation menu links */
-  .sidenav a {
+    background-color: #212529;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    box-shadow: 5px 5px 10px #0d0d0d, -5px -5px 10px #353535;
+    border-radius: 10px;
+}
+
+.sidenav a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
     color: #818181;
     display: block;
     transition: 0.3s;
-  }
-  
-  /* When you mouse over the navigation links, change their color */
-  .sidenav a:hover {
+}
+
+.sidenav a:hover {
     color: #ffc107;
-  }
-  
-  /* Position and style the close button (top right corner) */
-  .sidenav .closebtn {
+}
+
+.sidenav .closebtn {
     position: absolute;
     top: 0;
     right: 25px;
     font-size: 36px;
     margin-left: 50px;
     color: #ffc107;
-  }
-  
+}
