@@ -1,170 +1,36 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-
-  <!-- Bootstrap CSS -->
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="styles.css">
-
-  <!-- Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-  <title>Billing Dashboard</title>
+    <title>TELCO Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-  <nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand" href="#" id="menuButton">☰</a>
-    <h1 class="text-center flex-grow-1">Billing Dashboard</h1>
-  </nav>
-  <div id="sideNav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="#" data-target="overviewContainer">Overview</a>
-    <a href="#" data-target="msisdnContainer">MSISDN</a>
-    <a href="#" data-target="simCardContainer">SIM-CARD</a>
-    <a href="#" data-target="schedulerContainer">SCHEDULER</a>
-  </div>
-
-  <div class="container mt-5" id="overviewContainer">
-    <div class="row">
-      <div class="col-lg-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Active Users</h5>
-            <p class="card-text">Count of active users.</p>
-            <canvas id="activeUsersChart"></canvas>
-          </div>
+    <h1>Billing Dashboard</h1>
+    <div class="dashboard">
+        <div class="chart-container">
+            <canvas id="simDataChart"></canvas>
         </div>
-      </div>
-      <div class="col-lg-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Monthly Revenue</h5>
-            <p class="card-text">Total revenue for this month.</p>
-            <canvas id="monthlyRevenueChart"></canvas>
-          </div>
+        <div class="filter-container">
+            <label for="category">Category:</label>
+            <select id="category" multiple>
+                <option value="No Category">No Category</option>
+                <option value="P-SIM">P-SIM</option>
+                <option value="E-SIM">E-SIM</option>
+            </select>
+            <label for="status">Status:</label>
+            <select id="status" multiple>
+                <option value="Free">Free</option>
+                <option value="Reserved">Reserved</option>
+                <option value="Assigned">Assigned</option>
+                <option value="Cancel">Cancel</option>
+                <option value="Imported">Imported</option>
+                <option value="Pending PFC">Pending PFC</option>
+                <option value="GDPR Ereased">GDPR Ereased</option>
+            </select>
         </div>
-      </div>
-      <div class="col-lg-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Unpaid Bills</h5>
-            <p class="card-text">Count of unpaid bills.</p>
-            <canvas id="unpaidBillsChart"></canvas>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
 
-  <div class="container mt-5 d-none" id="msisdnContainer">
-    <div class="row">
-      <div class="col-lg-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">MSISDN Usage</h5>
-            <p class="card-text">Usage of MSISDN over time.</p>
-            <canvas id="msisdnUsageChart"></canvas>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">MSISDN Activation</h5>
-            <p class="card-text">Activation of MSISDN over time.</p>
-            <canvas id="msisdnActivationChart"></canvas>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">MSISDN Deactivation</h5>
-            <p class="card-text">Deactivation of MSISDN over time.</p>
-            <canvas id="msisdnDeactivationChart"></canvas>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="container mt-5 d-none" id="simCardContainer">
-    <div class="row">
-      <div class="col-lg-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">SIM-CARD Activation</h5>
-            <p class="card-text">Activation of SIM-CARDs over time.</p>
-            <canvas id="simCardActivationChart"></canvas>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">SIM-CARD Usage</h5>
-            <p class="card-text">Usage of SIM-CARDs over time.</p>
-            <canvas id="simCardUsageChart"></canvas>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">SIM-CARD Deactivation</h5>
-            <p class="card-text">Deactivation of SIM-CARDs over time.</p>
-            <canvas id="simCardDeactivationChart"></canvas>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="container mt-5 d-none" id="schedulerContainer">
-    <div class="row">
-      <div class="col-lg-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Scheduler Tasks</h5>
-            <p class="card-text">Completion of scheduler tasks over time.</p>
-            <canvas id="schedulerTasksChart"></canvas>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Scheduler Errors</h5>
-            <p class="card-text">Count of scheduler errors over time.</p>
-            <canvas id="schedulerErrorsChart"></canvas>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Scheduler Downtime</h5>
-            <p class="card-text">Scheduler downtime over time.</p>
-            <canvas id="schedulerDowntimeChart"></canvas>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script src="main.js"></script>
-
-  <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>

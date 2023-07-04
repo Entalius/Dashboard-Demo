@@ -1,94 +1,43 @@
 body {
-    padding-top: 20px;
-    font-family: 'Roboto', sans-serif;
-    background-color: #212529;
-    color: #f8f9fa;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f8f8f8;
 }
 
-.navbar {
-    background-color: #212529 !important;
-    border: none;
-    box-shadow: 5px 5px 10px #0d0d0d, -5px -5px 10px #353535;
-    border-radius: 10px;
+h1 {
+    margin-top: 20px;
 }
 
-.navbar h1 {
-    margin: 0 auto;
-    color: #f8f9fa;
+.dashboard {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    margin-top: 50px;
 }
 
-.navbar .navbar-brand {
-    color: #f8f9fa;
+.chart-container {
+    width: 45%;
+    height: 60%;
 }
 
-.card {
+.filter-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 45%;
+}
+
+select {
+    width: 100%;
+    height: 35px;
     margin-bottom: 20px;
-    transition: transform .2s;
-    background-color: #212529;
-    border: none;
-    box-shadow: 5px 5px 10px #0d0d0d, -5px -5px 10px #353535;
-    border-radius: 10px;
 }
 
-.card .card-body {
-    color: #f8f9fa;
-    position: relative;
-}
-
-.card .card-body::before {
-    content: "";
-    position: absolute;
-    top: -16px;
-    right: -16px;
-    bottom: -16px;
-    left: -16px;
-    background: inherit;
-    border-radius: inherit;
-    box-shadow: inset 2px 2px 5px #0d0d0d, inset -2px -2px 5px #353535;
-}
-
-.card:hover {
-    transform: scale(1.02);
-    box-shadow: 10px 10px 20px #0d0d0d, -10px -10px 20px #353535;
-}
-
-.card:hover .card-body {
-    color: #ffc107;
-}
-
-.sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #212529;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-    box-shadow: 5px 5px 10px #0d0d0d, -5px -5px 10px #353535;
-    border-radius: 10px;
-}
-
-.sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
-}
-
-.sidenav a:hover {
-    color: #ffc107;
-}
-
-.sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-    color: #ffc107;
+canvas {
+    width: 100% !important;
+    height: auto !important;
 }
