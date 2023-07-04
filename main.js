@@ -1,71 +1,96 @@
-let chart;
+let selectedCategories = [];
+let selectedStatuses = [];
 
 window.onload = function() {
-    const categorySelect = document.getElementById('category');
-    const statusSelect = document.getElementById('status');
+    const categoryDropdown = document.getElementById('category');
+    const statusDropdown = document.getElementById('status');
+    const resetButton = document.getElementById('reset');
+    const categoryBtn = document.getElementById('categoryBtn');
+    const statusBtn = document.getElementById('statusBtn');
 
-    categorySelect.addEventListener('change', updateChart);
-    statusSelect.addEventListener('change', updateChart);
+    categoryBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        categoryDropdown.classList.toggle('show');
+    });
 
-    updateChart();
+    statusBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        statusDropdown.classList.toggle('show');
+    });
+
+    // Close the dropdown if the user clicks outside of it
+    window.addEventListener('click', function(e) {
+        if (!e.target.matches('.dropbtn')) {
+            const dropdowns = document.getElementsByClassName("dropdown-content");
+            for (let i = 0; i < dropdowns.length; i++) {
+                let openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    });
+
+    categoryDropdown.addEventListener('click', function(e) {
+        e.preventDefault();
+        const value = e.target.getAttribute('data-value');
+        if (value && !selectedCategories.includes(value)) {
+            selectedCategories.push(value);
+            categoryBtn.textContent = selectedCategories.join(', ');
+            updateTable();
+        }
+    });
+
+    statusDropdown.addEventListener('click', function(e) {
+        e.preventDefault();
+        const value = e.target.getAttribute('data-value');
+        if (value && !selectedStatuses.includes(value)) {
+            selectedStatuses.push(value);
+            statusBtn.textContent = selectedStatuses.join(', ');
+            updateTable();
+        }
+    });
+
+    resetButton.addEventListener('click', resetFilters);
+
+    updateTable();
 };
 
-function updateChart() {
-    const categorySelect = document.getElementById('category');
-    const statusSelect = document.getElementById('status');
-
-    const selectedCategories = Array.from(categorySelect.selectedOptions).map(option => option.value);
-    const selectedStatuses = Array.from(statusSelect.selectedOptions).map(option => option.value);
-
+function updateTable() {
     fetch('/sim_data')
         .then(response => response.json())
         .then(data => {
-            const filteredData = data.filter(item => selectedCategories.includes(item.Category) && selectedStatuses.includes(item.Status));
+            let filteredData = data;
 
-            const labels = filteredData.map(item => item.Status + ' - ' + item.Category);
-            const values = filteredData.map(item => item['Total Amount']);
-
-            const ctx = document.getElementById('simDataChart').getContext('2d');
-
-            if (chart) {
-                chart.destroy();
+            if (selectedCategories.length > 0) {
+                filteredData = filteredData.filter(item => selectedCategories.includes(item.Category));
             }
 
-            chart = new Chart(ctx, {
-                type: 'pie',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'SIM Card Data',
-                        data: values,
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            display: false
-                        }
-                    }
-                }
+            if (selectedStatuses.length > 0) {
+                filteredData = filteredData.filter(item => selectedStatuses.includes(item.Status));
+            }
+
+            const tableBody = document.getElementById('simDataTable').getElementsByTagName('tbody')[0];
+            tableBody.innerHTML = '';
+
+            filteredData.forEach(item => {
+                const row = tableBody.insertRow();
+                const cell1 = row.insertCell(0);
+                const cell2 = row.insertCell(1);
+                const cell3 = row.insertCell(2);
+
+                cell1.textContent = item.Status;
+                cell2.textContent = item.Category;
+                cell3.textContent = item['Total Amount'];
             });
         })
         .catch(error => console.error('Error:', error));
+}
+
+function resetFilters() {
+    selectedCategories = [];
+    selectedStatuses = [];
+    document.getElementById('categoryBtn').textContent = 'Select Category';
+    document.getElementById('statusBtn').textContent = 'Select Status';
+    updateTable();
 }

@@ -1,36 +1,52 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>TELCO Dashboard</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Billing Dashboard</h1>
+    <header>
+        <h1>Billing Dashboard</h1>
+    </header>
     <div class="dashboard">
-        <div class="chart-container">
-            <canvas id="simDataChart"></canvas>
+        <div class="filter-panel">
+            <div class="dropdown">
+                <button class="dropbtn" id="categoryBtn">Select Category</button>
+                <div class="dropdown-content" id="category">
+                    <a href="#" data-value="No Category">No Category</a>
+                    <a href="#" data-value="P-SIM">P-SIM</a>
+                    <a href="#" data-value="E-SIM">E-SIM</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn" id="statusBtn">Select Status</button>
+                <div class="dropdown-content" id="status">
+                    <a href="#" data-value="Free">Free</a>
+                    <a href="#" data-value="Reserved">Reserved</a>
+                    <a href="#" data-value="Assigned">Assigned</a>
+                    <a href="#" data-value="Cancel">Cancel</a>
+                    <a href="#" data-value="Imported">Imported</a>
+                    <a href="#" data-value="Pending PFC">Pending PFC</a>
+                    <a href="#" data-value="GDPR Ereased">GDPR Ereased</a>
+                </div>
+            </div>
+            <button id="reset">Reset Filters</button>
         </div>
-        <div class="filter-container">
-            <label for="category">Category:</label>
-            <select id="category" multiple>
-                <option value="No Category">No Category</option>
-                <option value="P-SIM">P-SIM</option>
-                <option value="E-SIM">E-SIM</option>
-            </select>
-            <label for="status">Status:</label>
-            <select id="status" multiple>
-                <option value="Free">Free</option>
-                <option value="Reserved">Reserved</option>
-                <option value="Assigned">Assigned</option>
-                <option value="Cancel">Cancel</option>
-                <option value="Imported">Imported</option>
-                <option value="Pending PFC">Pending PFC</option>
-                <option value="GDPR Ereased">GDPR Ereased</option>
-            </select>
+        <div class="table-container">
+            <table id="simDataTable">
+                <thead>
+                    <tr>
+                        <th>Status</th>
+                        <th>Category</th>
+                        <th>Total Amount</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="main.js"></script>
 </body>
 </html>
