@@ -7,50 +7,136 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    
-    <header>
+    <header class="main-header">
+        <div class="hamburger-menu">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
         <h1>Billing Dashboard</h1>
     </header>
-    <div class="dashboard">
-        <div class="filter-panel">
-            <div class="dropdown">
-                <button class="dropbtn" id="categoryBtn">Select Category</button>
-                <div class="dropdown-content" id="category">
-                    <a href="#" data-value="No Category">No Category</a>
-                    <a href="#" data-value="P-SIM">P-SIM</a>
-                    <a href="#" data-value="E-SIM">E-SIM</a>
+
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn">&times;</a>
+        <a href="#" id="overview">Overview</a>
+        <a href="#" id="sim">SIM</a>
+        <a href="#" id="msisdn">MSISDN</a>
+        <a href="#" id="scheduler">Scheduler</a>
+    </div>
+    <div id="simContent" style="display: none;">
+        <header>
+            <h1>SIM Overview</h1>
+        </header>
+        <div class="dashboard">
+            <div class="filter-panel">
+                <div class="dropdown">
+                    <button class="dropbtn" id="categoryBtn">Select Category</button>
+                    <div class="dropdown-content" id="category">
+                        <a href="#" data-value="No Category">No Category</a>
+                        <a href="#" data-value="P-SIM">P-SIM</a>
+                        <a href="#" data-value="E-SIM">E-SIM</a>
+                    </div>
                 </div>
-            </div>
-            <div class="dropdown">
-                <button class="dropbtn" id="statusBtn">Select Status</button>
-                <div class="dropdown-content" id="status">
-                    <a href="#" data-value="Free">Free</a>
-                    <a href="#" data-value="Reserved">Reserved</a>
-                    <a href="#" data-value="Assigned">Assigned</a>
-                    <a href="#" data-value="Cancel">Cancel</a>
-                    <a href="#" data-value="Imported">Imported</a>
-                    <a href="#" data-value="Pending PFC">Pending PFC</a>
-                    <a href="#" data-value="GDPR Ereased">GDPR Ereased</a>
+                <div class="dropdown">
+                    <button class="dropbtn" id="statusBtn">Select Status</button>
+                    <div class="dropdown-content" id="status">
+                        <a href="#" data-value="Free">Free</a>
+                        <a href="#" data-value="Reserved">Reserved</a>
+                        <a href="#" data-value="Assigned">Assigned</a>
+                        <a href="#" data-value="Cancel">Cancel</a>
+                        <a href="#" data-value="Imported">Imported</a>
+                        <a href="#" data-value="Pending PFC">Pending PFC</a>
+                        <a href="#" data-value="GDPR Ereased">GDPR Ereased</a>
+                    </div>
                 </div>
+                <button id="reset">Reset Filters</button>
             </div>
-            <button id="reset">Reset Filters</button>
-        </div>
-        <div class="table-container">
-            <table id="simDataTable">
-                <thead>
-                    <tr>
-                        <th>Status</th>
-                        <th>Category</th>
-                        <th>Total Amount</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
+            <div class="table-container">
+                <table id="simDataTable" class="dataTable">
+                    <thead>
+                        <tr>
+                            <th>Status</th>
+                            <th>Category</th>
+                            <th>Total Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
         </div>
     </div>
+
+    <div id="msisdnContent" style="display: none;">
+        <header>
+            <h1>MSISDN Overview</h1>
+        </header>
+        <div class="dashboard">
+            <div class="filter-panel">
+                <div class="dropdown">
+                    <button class="dropbtn" id="msisdnCategoryBtn">Select Category</button>
+                    <div class="dropdown-content" id="msisdnCategory">
+                        <!-- Categories will be populated dynamically -->
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn" id="msisdnStatusBtn">Select Status</button>
+                    <div class="dropdown-content" id="msisdnStatus">
+                        <!-- Statuses will be populated dynamically -->
+                    </div>
+                </div>
+                <button id="msisdnReset">Reset Filters</button>
+            </div>
+            <div class="table-container">
+                <table id="msisdnDataTable" class="dataTable">
+                    <thead>
+                        <tr>
+                            <th>Status</th>
+                            <th>Category</th>
+                            <th>Total Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="schedulerContent" style="display: none;">
+        <header>
+            <h1>Scheduler Overview</h1>
+        </header>
+        <div class="dashboard">
+            <div class="filter-panel">
+                <div class="dropdown">
+                    <button class="dropbtn" id="schedulerCategoryBtn">Select Category</button>
+                    <div class="dropdown-content" id="schedulerCategory">
+                        <!-- Categories will be populated dynamically -->
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn" id="schedulerStatusBtn">Select Status</button>
+                    <div class="dropdown-content" id="schedulerStatus">
+                        <!-- Statuses will be populated dynamically -->
+                    </div>
+                </div>
+                <button id="schedulerReset">Reset Filters</button>
+            </div>
+            <div class="table-container">
+                <table id="schedulerDataTable" class="dataTable">
+                    <thead>
+                        <tr>
+                            <th>Status</th>
+                            <th>Category</th>
+                            <th>Total Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js"></script>
     <script src="main.js"></script>
-    
 </body>
 </html>
